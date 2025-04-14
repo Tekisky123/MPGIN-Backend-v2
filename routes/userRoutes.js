@@ -1,3 +1,4 @@
+// routes/userRoutes.js
 import express from 'express';
 import {
     registerUser,
@@ -6,13 +7,17 @@ import {
     getUser,
     deleteUser
 } from '../controllers/userController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
-const router = express.Router();
+const userRoutes = express.Router();
 
-router.post('/register', registerUser);
-router.post('/login', loginUser);
-router.get('/', getAllUsers);
-router.get('/:id', getUser);
-router.delete('/:id', deleteUser);
+// Public routes
+userRoutes.post('/register', registerUser);
+userRoutes.post('/login', loginUser);
 
-export default router;
+// Protected routes
+userRoutes.get('/', authMiddleware, getAllUsers);
+userRoutes.get('/:id', authMiddleware, getUser);
+userRoutes.delete('/:id', authMiddleware, deleteUser);
+
+export default userRoutes;

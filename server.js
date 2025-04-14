@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/users', userRoutes);
+app.use('/user', userRoutes);
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
