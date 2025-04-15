@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
+import galleryRoutes from './routes/galleryRoutes.js';
+import { errorHandler } from './middleware/errorHandler.js';
 
 dotenv.config();
 
@@ -11,6 +13,10 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/user', userRoutes);
+app.use('/gallery', galleryRoutes);
+app.use('/faculty', galleryRoutes);
+
+app.use(errorHandler);
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,

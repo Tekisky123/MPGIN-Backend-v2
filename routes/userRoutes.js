@@ -16,8 +16,8 @@ userRoutes.post('/register', registerUser);
 userRoutes.post('/login', loginUser);
 
 // Protected routes
-userRoutes.get('/', authMiddleware, getAllUsers);
-userRoutes.get('/:id', authMiddleware, getUser);
-userRoutes.delete('/:id', authMiddleware, deleteUser);
+userRoutes.get('/getAllUsers',  getAllUsers);
+userRoutes.get('/getOneUser/:id', authMiddleware, getUser);
+userRoutes.delete('/deleteOneUser/:id', authMiddleware, deleteUser);
 
 export default userRoutes;
