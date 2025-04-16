@@ -25,7 +25,8 @@ const uploadPhotoToS3 = async (file, folderName) => {
 // Add faculty member
 export const addFaculty = async (req, res) => {
   try {
-    const { name, college, department, qualification, experience } = req.body;
+    const { name, college, department, qualification, experience, designation,
+      dateOfJoining } = req.body;
     const file = req.file;
 
     if (!file) {
@@ -37,7 +38,9 @@ export const addFaculty = async (req, res) => {
       name,
       college,
       department,
+      designation,
       qualification,
+      dateOfJoining,
       experience,
       photo: photoUrl,
     });
@@ -91,6 +94,8 @@ export const updateFaculty = async (req, res) => {
     faculty.name = name || faculty.name;
     faculty.college = college || faculty.college;
     faculty.department = department || faculty.department;
+    faculty.designation = designation || faculty.designation;
+    faculty.dateOfJoining = dateOfJoining || faculty.dateOfJoining;
     faculty.qualification = qualification || faculty.qualification;
     faculty.experience = experience || faculty.experience;
 
