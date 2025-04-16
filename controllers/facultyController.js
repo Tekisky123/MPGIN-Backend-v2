@@ -25,15 +25,26 @@ const uploadPhotoToS3 = async (file, folderName) => {
 // Add faculty member
 export const addFaculty = async (req, res) => {
   try {
-    const { name, college, department, qualification, experience, designation,
-      dateOfJoining } = req.body;
-    const file = req.file;
+    const { name, college, department, qualification, experience, designation, dateOfJoining } = req.body;
+    const file = req.file; // Uploaded file (if any)
 
-    // if (file) {
-    //   return res.status(400).json({ error: "No photo uploaded" });
-    // }
+    
+    if (!name || !college || !department || !qualification || !experience || !designation || !dateOfJoining) {
+      return res.status(400).json({ error: "All fields are required except photo" });
+    }
 
-    const photoUrl = await uploadPhotoToS3(file, `${college}/${department}`);
+    let photoUrl = null;
+
+   
+    if (file) {
+      try {
+        photoUrl = await uploadPhotoToS3(file, `${college}/${department}`);
+      } catch (uploadError) {
+        return res.status(500).json({ error: "Failed to upload photo", details: uploadError.message });
+      }
+    }
+
+    // Create new faculty instance
     const faculty = new Faculty({
       name,
       college,
@@ -42,12 +53,16 @@ export const addFaculty = async (req, res) => {
       qualification,
       dateOfJoining,
       experience,
-      photo: photoUrl,
+      photo: photoUrl, 
     });
 
+    // Save faculty to the database
     await faculty.save();
+
+    // Respond with success message
     res.status(201).json({ message: "Faculty added successfully", faculty });
   } catch (error) {
+    // Handle server errors
     res.status(500).json({ error: "Internal Server Error", details: error.message });
   }
 };
