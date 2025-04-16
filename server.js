@@ -5,6 +5,7 @@ import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
 import galleryRoutes from './routes/galleryRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import facultyRoutes from './routes/facultyRoutes.js';
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ app.use(express.json());
 
 app.use('/user', userRoutes);
 app.use('/gallery', galleryRoutes);
-app.use('/faculty', galleryRoutes);
+app.use('/faculty', facultyRoutes);
 
 app.use(errorHandler);
 

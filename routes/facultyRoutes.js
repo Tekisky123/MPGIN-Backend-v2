@@ -1,12 +1,12 @@
 import express from "express";
 import multer from "multer";
 import {
-    addFaculty,
-    getFacultyFromCollege,
-    getFacultyByCollegeDepartment,
-    updateFaculty,
-    deleteFaculty,
-} from "../controllers/facultyController.js";  
+  addFaculty,
+  getFacultyFromCollege,
+  getFacultyByCollegeDepartment,
+  updateFaculty,
+  deleteFaculty,
+} from "../controllers/facultyController.js";
 
 const facultyRoutes = express.Router();
 
@@ -17,7 +17,10 @@ facultyRoutes.post("/add", upload.single("photo"), addFaculty);
 
 // Read
 facultyRoutes.get("/college/:college", getFacultyFromCollege);
-facultyRoutes.get("/college/:college/department/:department", getFacultyByCollegeDepartment);
+facultyRoutes.get(
+  "/college/:college/department/:department",
+  getFacultyByCollegeDepartment
+);
 
 // Update
 facultyRoutes.put("/:id", upload.single("photo"), updateFaculty);
