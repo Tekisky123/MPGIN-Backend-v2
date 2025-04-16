@@ -93,7 +93,7 @@ export const getFacultyByCollegeDepartment = async (req, res) => {
 export const updateFaculty = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, college, department, qualification, experience } = req.body;
+    const { name, college, department, qualification, experience,designation,dateOfJoining } = req.body;
     const file = req.file;
 
     const faculty = await Faculty.findById(id);
