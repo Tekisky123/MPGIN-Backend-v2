@@ -10,7 +10,13 @@ import facultyRoutes from './routes/facultyRoutes.js';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+// ✅ Properly configure CORS to allow all origins
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE',"PATCH"],
+}));
+
 app.use(express.json());
 
 app.use('/user', userRoutes);
