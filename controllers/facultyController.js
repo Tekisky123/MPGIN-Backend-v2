@@ -29,11 +29,10 @@ export const addFaculty = async (req, res) => {
       dateOfJoining } = req.body;
     const file = req.file;
 
-    if (!file) {
-      return res.status(400).json({ error: "No photo uploaded" });
+    if (file) {
+      const photoUrl = await uploadPhotoToS3(file, `${college}/${department}`);
     }
 
-    const photoUrl = await uploadPhotoToS3(file, `${college}/${department}`);
     const faculty = new Faculty({
       name,
       college,
