@@ -6,12 +6,12 @@ import userRoutes from './routes/userRoutes.js';
 import galleryRoutes from './routes/galleryRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import facultyRoutes from './routes/facultyRoutes.js';
+import notificationRoutes from './routes/notificationRoutes.js';
 
 dotenv.config();
 
 const app = express();
 
-// ✅ Properly configure CORS to allow all origins
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE',"PATCH"],
@@ -22,6 +22,7 @@ app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/faculty', facultyRoutes);
+app.use('/notifications', notificationRoutes);
 
 app.use(errorHandler);
 
