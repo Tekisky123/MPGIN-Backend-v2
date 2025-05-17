@@ -29,7 +29,7 @@ export const addFaculty = async (req, res) => {
     const file = req.file; // Uploaded file (if any)
 
     
-    if (!name || !college || !department || !qualification || !experience || !designation || !dateOfJoining) {
+    if (!name || !college || !department || !qualification || !experience || !designation ) {
       return res.status(400).json({ error: "All fields are required except photo" });
     }
 
