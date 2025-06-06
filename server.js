@@ -7,6 +7,8 @@ import galleryRoutes from './routes/galleryRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import facultyRoutes from './routes/facultyRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
+import alumniRoutes from './routes/alumniRoutes.js';
+import suggestionRoutes from './routes/suggestionRoutes.js';
 
 dotenv.config();
 
@@ -23,6 +25,8 @@ app.use('/user', userRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/faculty', facultyRoutes);
 app.use('/notifications', notificationRoutes);
+app.use('/alumni', alumniRoutes);
+app.use('/suggestions', suggestionRoutes);
 
 app.use(errorHandler);
 
