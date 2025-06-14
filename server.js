@@ -9,6 +9,7 @@ import facultyRoutes from './routes/facultyRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
 import alumniRoutes from './routes/alumniRoutes.js';
 import suggestionRoutes from './routes/suggestionRoutes.js';
+import popupNotificationRoutes from './routes/popupNotificationRoutes.js';
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use('/faculty', facultyRoutes);
 app.use('/notifications', notificationRoutes);
 app.use('/alumni', alumniRoutes);
 app.use('/suggestions', suggestionRoutes);
+app.use("/popupNotification", popupNotificationRoutes);
 
 app.use(errorHandler);
 
