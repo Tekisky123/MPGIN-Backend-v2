@@ -8,7 +8,11 @@ const FacultySchema = new mongoose.Schema({
     dateOfJoining: { type: String },
     qualification: { type: String, required: true },
     experience: { type: String },
-    photo: { type: String,  default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" },
+    photo: { type: String, default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" },
+    sequence: {
+        type: Number,
+        default: 0 // lowest priority
+    }
 });
 
 export default mongoose.model('Faculty', FacultySchema);

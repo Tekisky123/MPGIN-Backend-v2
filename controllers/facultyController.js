@@ -25,11 +25,11 @@ const uploadPhotoToS3 = async (file, folderName) => {
 // Add faculty member
 export const addFaculty = async (req, res) => {
   try {
-    const { name, college, department, qualification, experience, designation, dateOfJoining } = req.body;
+    const { name, college, department, qualification, experience, designation, dateOfJoining, sequence } = req.body;
     const file = req.file; // Uploaded file (if any)
 
     
-    if (!name || !college || !department || !qualification ||  !designation ) {
+    if (!name || !college || !department || !qualification ||  !designation || !sequence ) {
       return res.status(400).json({ error: "All fields are required except photo" });
     }
 
@@ -54,6 +54,7 @@ export const addFaculty = async (req, res) => {
       dateOfJoining,
       experience,
       photo: photoUrl, 
+      sequence
     });
 
     // Save faculty to the database
@@ -93,7 +94,7 @@ export const getFacultyByCollegeDepartment = async (req, res) => {
 export const updateFaculty = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, college, department, qualification, experience,designation,dateOfJoining } = req.body;
+    const { name, college, department, qualification, experience,designation,dateOfJoining, sequence } = req.body;
     const file = req.file;
 
     const faculty = await Faculty.findById(id);
@@ -113,6 +114,7 @@ export const updateFaculty = async (req, res) => {
     faculty.dateOfJoining = dateOfJoining || faculty.dateOfJoining;
     faculty.qualification = qualification || faculty.qualification;
     faculty.experience = experience || faculty.experience;
+    faculty.sequence = sequence || faculty.sequence;
 
     await faculty.save();
 
